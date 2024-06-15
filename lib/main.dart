@@ -4,7 +4,6 @@ void main() {
   runApp(const FigmaToCodeApp());
 }
 
-
 class FigmaToCodeApp extends StatelessWidget {
   const FigmaToCodeApp({super.key});
 
@@ -25,8 +24,23 @@ class FigmaToCodeApp extends StatelessWidget {
   }
 }
 
-class Iphone13ProMax1 extends StatelessWidget {
+class Iphone13ProMax1 extends StatefulWidget {
   const Iphone13ProMax1({super.key});
+
+  @override
+  _Iphone13ProMax1State createState() => _Iphone13ProMax1State();
+}
+
+class _Iphone13ProMax1State extends State<Iphone13ProMax1> {
+  String _imagePath = "assets/images/bixinho.png";
+
+  void _changeImage() {
+    setState(() {
+      _imagePath = _imagePath == "assets/images/bixinho.png"
+          ? "assets/images/bixinho2.png"
+          : "assets/images/bixinho.png";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -309,13 +323,16 @@ class Iphone13ProMax1 extends StatelessWidget {
               Positioned(
                 left: 32,
                 top: 208,
-                child: Container(
-                  width: 348,
-                  height: 448,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/bixinho.png"),
-                      fit: BoxFit.fill,
+                child: GestureDetector(
+                  onTap: _changeImage,
+                  child: Container(
+                    width: 348,
+                    height: 448,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(_imagePath),
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                 ),
